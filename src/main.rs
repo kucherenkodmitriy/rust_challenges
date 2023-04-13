@@ -1,7 +1,3 @@
-fn unique(a: Vec<i32>) -> Vec<i32> {
-    todo!();
-}
-
 // advanced 1: use generic types
 // fn unique(a: Vec<T>) -> Vec<T> {
 //     todo!();
@@ -12,10 +8,13 @@ fn unique(a: Vec<i32>) -> Vec<i32> {
 //     todo!();
 // }
 
-// advanced 3: use iterators
-// fn unique(a: Iterable<T>) -> Vec<T> {
-//     todo!();
-// }
+//advanced 3: use iterators
+
+fn unique<T: std::cmp::Ord>(mut a: Vec<T>) -> Vec<T> {
+    a.sort();
+    a.dedup();
+    a
+}
 
 fn main() {
     let input = vec![2, 1, 1];
@@ -26,7 +25,7 @@ fn main() {
 
 #[test]
 fn empty_list() {
-    let input = vec![];
+    let input: Vec<i64> = vec![];
     let expected_output = vec![];
     let actual_output = unique(input);
     assert_eq!(actual_output, expected_output);
